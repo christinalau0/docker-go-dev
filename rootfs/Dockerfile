@@ -4,7 +4,7 @@ LABEL name="deis-go-dev" \
   maintainer="Matt Boersma <matt.boersma@microsoft.com>"
 
 ENV ANSIBLE_VERSION=5.9.0 \
-  AZCLI_VERSION=2.33.1 \
+  AZCLI_VERSION=2.26.1 \
   DOCKER_VERSION=20.10.2 \
   ETCDCTL_VERSION=v3.1.8 \
   GO_VERSION=1.17.11 \
@@ -89,7 +89,6 @@ RUN \
   && go get -u -v \
   github.com/AlekSi/gocov-xml \
   github.com/axw/gocov/gocov \
-  github.com/go-delve/delve/cmd/dlv \
   github.com/dgrijalva/jwt-go/cmd/jwt \
   github.com/golang/protobuf/protoc-gen-go \
   github.com/haya14busa/goverage \
@@ -111,9 +110,7 @@ RUN \
   && tar -xvf /tmp/upx.tar.xz -C /tmp \
   && mv /tmp/upx-${UPX_VERSION}-amd64_linux/upx /usr/local/bin/upx \
   && pip3 install --disable-pip-version-check --no-cache-dir --upgrade pip \
-  && pip3 install --disable-pip-version-check --no-cache-dir --upgrade azure-cli==${AZCLI_VERSION} PyJWT==${PYJWT_VERSION} shyaml pywinrm==${PYWINRM_VERSION} \
-  && pip3 install --disable-pip-version-check --no-cache-dir --upgrade ansible==${ANSIBLE_VERSION} ansible-core==2.12.6 --force-reinstall \
-  && ansible-galaxy collection install ansible.windows:==1.10.0 \
+  && pip3 install --disable-pip-version-check --no-cache-dir --upgrade azure-cli==${AZCLI_VERSION} PyJWT==${PYJWT_VERSION} shyaml ansible==${ANSIBLE_VERSION} pywinrm==${PYWINRM_VERSION} \
   && apt-get purge --auto-remove -y libffi-dev python3-dev \
   && apt-get autoremove -y \
   && apt-get clean -y \

@@ -1,6 +1,6 @@
-VERSION ?= $(shell git describe --tags --exact-match 2>/dev/null || echo latest)
-REGISTRY ?= quay.io/
-IMAGE_PREFIX ?= deis
+VERSION ?= 1.34.7.1
+REGISTRY ?= jadarsie.azurecr.io/
+IMAGE_PREFIX ?= aks-engine-azurestack
 IMAGE := ${REGISTRY}${IMAGE_PREFIX}/go-dev:${VERSION}
 
 # scripts are checked *after* build, so use paths inside the container
